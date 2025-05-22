@@ -1,12 +1,13 @@
 import Link from "next/link";
 import React from "react";
 import TodoAdd from "./_components/TodoAdd";
+import SearchForm from "./_components/SearchForm";
 // Data fetching Component Server
 
-const getTodoList = async () => {
+const getTodoList = async (q: string = "") => {
     // Phiên Nextjs 15 đã đặc cache "no-store" là default rồi nên chúng ta kh cần đặt
     // cache: "no-store": là Bên phía BE cập nhật dữ liệu thì FE cũng sẽ được cập nhật theo
-    const response = await fetch(`${process.env.NEXT_PUBLIC_SERVER_API}/todos`)
+    const response = await fetch(`${process.env.NEXT_PUBLIC_SERVER_API}/todos?q=${q}`)
     if (!response.ok) {
         // Ở trong production thì nó kh bị lỗi
         throw new Error("Có lỗi khi lấy dữ liệu /todos");
@@ -21,19 +22,37 @@ export type Todo = {
     completed: boolean;
 };
 
-export default async function TodoPage() {
-    const todoList = await getTodoList();
+export default async function TodoPage({
+    searchParams
+}: {
+    searchParams: Promise<{ q: string }>;
+}) {
+    const q = (await searchParams).q || "";
+
+    const todoList = await getTodoList(q);
+
 
     return (
-        <div>
-            <h1>Todo List</h1>
-            {
-                todoList.map((todo: Todo) => (
-                    <Link href={`todos/${todo.id}`} key={todo.id}>
-                        <h3 >{todo.title}</h3>
-                    </Link>
-                ))
-            }
+        <div className="container mt-5">
+            <h1 className="display-5 fw-bold text-center mb-4">Todo List: {q}</h1>
+            <SearchForm />
+            <div className="list-group mb-4">
+                {todoList.length > 0 ? (
+                    todoList.map((todo: Todo) => (
+                        <Link
+                            href={`todos/${todo.id}`}
+                            key={todo.id}
+                            className="list-group-item list-group-item-action text-decoration-none"
+                        >
+                            <h5 className="mb-0">{todo.title}</h5>
+                        </Link>
+                    ))
+                ) : (
+                    <div className="alert alert-info text-center" role="alert">
+                        No todos yet. Add one below!
+                    </div>
+                )}
+            </div>
             <TodoAdd />
         </div>
     );

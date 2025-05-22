@@ -24,13 +24,22 @@ export default async function TodoDetailPage({ params }: Params) {
         notFound();
     }
     return (
-        <div>
-            <h2>{todo.title}</h2>
-            <h2>{todo.content}</h2>
-            <p>{todo.completed.toString()}</p>
-            <h4>
-                <Link href="/todos">Back</Link>
-            </h4>
+        <div className="container mt-5">
+            <div className="card p-4">
+                <h2 className="card-title mb-3">{todo.title}</h2>
+                <p className="card-text text-muted">{todo.content}</p>
+                <p className="card-text">
+                    Status:{' '}
+                    <span className={`badge ${todo.completed ? 'bg-success' : 'bg-warning'}`}>
+                        {todo.completed ? 'Completed' : 'Pending'}
+                    </span>
+                </p>
+                <div className="mt-4">
+                    <Link href="/todos" className="btn btn-outline-primary">
+                        Back to Todos
+                    </Link>
+                </div>
+            </div>
         </div>
     );
 }

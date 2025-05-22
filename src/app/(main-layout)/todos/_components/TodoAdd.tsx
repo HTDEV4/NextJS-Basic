@@ -29,22 +29,36 @@ export default function TodoAdd() {
     }
 
     return (
-        <form onSubmit={handleSubmit}>
-            <input
-                type="text"
-                name="title"
-                placeholder="Title..."
-                className="form-control"
-                required
-            />
-            <input
-                type="text"
-                name="content"
-                placeholder="Content"
-                className="form-control"
-                required
-            />
-            <button type="submit" className="btn btn-primary mt-4">Add</button>
+        <form onSubmit={handleSubmit} className="card p-4">
+            <div className="mb-3">
+                <label htmlFor="title" className="form-label">
+                    Title
+                </label>
+                <input
+                    type="text"
+                    name="title"
+                    id="title"
+                    placeholder="Enter title..."
+                    className="form-control"
+                    required
+                />
+            </div>
+            <div className="mb-3">
+                <label htmlFor="content" className="form-label">
+                    Content
+                </label>
+                <textarea
+                    name="content"
+                    id="content"
+                    placeholder="Enter content..."
+                    className="form-control"
+                    rows={4}
+                    required
+                />
+            </div>
+            <button type="submit" className="btn btn-primary w-100">
+                Add
+            </button>
         </form>
     );
 }

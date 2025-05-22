@@ -11,16 +11,33 @@ export type Post = {
 
 export default function PostList() {
     const [postList, setPostList] = useState<Post[]>([]);
+    const [error, setError] = useState<Error>(null as unknown as Error);
 
     const getPost = async () => {
-        const response = await fetch(`${process.env.NEXT_PUBLIC_SERVER_API}/posts`);
-        const data = await response.json();
-        setPostList(data);
+        // Lấy dữ liệu thì phải bắt try-catch
+        try {
+            const response = await fetch(`${process.env.NEXT_PUBLIC_SERVER_API}/posts`);
+            // Có response thì check coi response có oke chưa.
+            if (!response.ok) {
+                throw new Error("Failed to fetch posts");
+            }
+            const data = await response.json();
+            setPostList(data);
+        } catch (error: unknown) {
+            // Trường hợp kiểu dữ liệu là null thì không nhận catch được
+            setError(error as Error);
+        }
     }
 
     useEffect(() => {
         getPost();
     }, [])
+
+    if (error) {
+        return (
+            <h3>{error.message}</h3>
+        )
+    }
 
     return (
         <div>

@@ -1,6 +1,8 @@
 # Chú ý
 
 - .env là để set up public server api cho toàn hệ thống
+- Nếu form ở trên server chúng ta có thể tạo ra 1 hàm trong component ngay đó luôn
+- `use server` ở đầu trang nếu tách ra 1 component riêng và `use client` và `use server` kh thể ở trong cùng 1 server
 
 ## Error Handling
 

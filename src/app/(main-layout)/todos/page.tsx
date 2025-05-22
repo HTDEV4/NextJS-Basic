@@ -40,7 +40,7 @@ export default async function TodoPage({
                 {todoList.length > 0 ? (
                     todoList.map((todo: Todo) => (
                         <Link
-                            href={`todos/${todo.id}`}
+                            href={`/todos/${todo.id}`}
                             key={todo.id}
                             className="list-group-item list-group-item-action text-decoration-none"
                         >

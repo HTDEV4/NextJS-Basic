@@ -1,0 +1,33 @@
+{
+  "todos": [
+    {
+      "id": "1",
+      "title": "Learn React",
+      "content": "Demo Learn React",
+      "completed": false
+    },
+    {
+      "id": "2",
+      "title": "Learn NextJS",
+      "content": "Demo Learn NextJS",
+      "completed": true
+    }
+  ],
+  "posts": [
+    {
+      "id": 1,
+      "title": "Post 1",
+      "content": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius, pariatur nobis. Porro nobis, hic iste nulla assumenda dolore voluptas natus consequuntur excepturi explicabo voluptatibus eveniet consectetur magni laborum aperiam in."
+    },
+    {
+      "id": 2,
+      "title": "Post 2",
+      "content": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius, pariatur nobis. Porro nobis, hic iste nulla assumenda dolore voluptas natus consequuntur excepturi explicabo voluptatibus eveniet consectetur magni laborum aperiam in."
+    },
+    {
+      "id": 3,
+      "title": "Post 3",
+      "content": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius, pariatur nobis. Porro nobis, hic iste nulla assumenda dolore voluptas natus consequuntur excepturi explicabo voluptatibus eveniet consectetur magni laborum aperiam in."
+    }
+  ]
+}

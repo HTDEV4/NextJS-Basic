@@ -8,7 +8,13 @@ import TodoAdd2 from "./_components/TodoAdd2";
 const getTodoList = async (q: string = "") => {
     // Phiên Nextjs 15 đã đặc cache "no-store" là default rồi nên chúng ta kh cần đặt
     // cache: "no-store": là Bên phía BE cập nhật dữ liệu thì FE cũng sẽ được cập nhật theo
-    const response = await fetch(`${process.env.NEXT_PUBLIC_SERVER_API}/todos?q=${q}`)
+    const response = await fetch(`${process.env.NEXT_PUBLIC_SERVER_API}/todos?q=${q}`,
+        {
+            next: {
+                tags: ["todos"],
+            }
+        }
+    )
     if (!response.ok) {
         // Ở trong production thì nó kh bị lỗi
         throw new Error("Có lỗi khi lấy dữ liệu /todos");

@@ -1,12 +1,22 @@
 "use client"
 
+import { useState } from "react";
 import { create } from "../action";
 
 
 export default function TodoAdd2() {
+    const [msg, setMsg] = useState<string>("");
 
     return (
-        <form className="card p-4" action={create}>
+        <form
+            className="card p-4"
+            action={async (formData: FormData) => {
+                const response: { success: boolean; message?: string } = await create(formData);
+                if (!response.success) {
+                    setMsg(response.message);
+                }
+            }}
+        >
             <div className="mb-3">
                 <label htmlFor="title" className="form-label">
                     Title
@@ -17,7 +27,7 @@ export default function TodoAdd2() {
                     id="title"
                     placeholder="Enter title..."
                     className="form-control"
-                    required
+
                 />
             </div>
             <div className="mb-3">
@@ -30,12 +40,13 @@ export default function TodoAdd2() {
                     placeholder="Enter content..."
                     className="form-control"
                     rows={4}
-                    required
+
                 />
             </div>
             <button type="submit" className="btn btn-primary w-100">
                 Add
             </button>
+            {msg && <span className="text-danger mt-2">{msg}</span>}
         </form>
     );
 }

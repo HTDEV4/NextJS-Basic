@@ -15,3 +15,13 @@
 ## Kĩ thuật debounce
 
 - Sử dụng kĩ thuật debounce để ngăn người dùng gọi API liên tục khi nhập thông tin trong ô tìm kiếm
+
+## useActionState
+
+- Nhớ phải có preState
+- Khi truyền action vô form là formaction
+- cái th hook này có trạng thái là pending được hỗ trợ thuộc tính là disable={pending}: Tính năng này là vô hiệu hóa cái nút trong lúc chờ xử lí. Không cho ng dùng click nhiều lần
+
+## zod
+
+- Nó không hỗ trợ string({required_errors})

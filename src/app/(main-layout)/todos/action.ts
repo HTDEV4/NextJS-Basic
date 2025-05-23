@@ -8,7 +8,10 @@ interface Error {
     message?: string;
 }
 
-export const create = async (formData: FormData) => {
+export const create = async (preState: {
+    success: boolean;
+    message: string | undefined
+}, formData: FormData) => {
     try {
         const title = formData.get('title');
         const content = formData.get('content');

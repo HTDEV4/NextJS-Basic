@@ -11,6 +11,12 @@
       "title": "Learn NextJS 2",
       "content": "Demo Learn NextJS 2",
       "completed": false
+    },
+    {
+      "title": "Todo 1",
+      "content": "Content 1",
+      "completed": false,
+      "id": "WpoZieO"
     }
   ],
   "posts": [

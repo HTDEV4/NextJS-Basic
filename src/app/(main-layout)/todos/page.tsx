@@ -46,13 +46,20 @@ export default async function TodoPage({
             <div className="list-group mb-4">
                 {todoList.length > 0 ? (
                     todoList.map((todo: Todo) => (
-                        <Link
-                            href={`/todos/${todo.id}`}
-                            key={todo.id}
-                            className="list-group-item list-group-item-action text-decoration-none"
-                        >
-                            <h5 className="mb-0">{todo.title}</h5>
-                        </Link>
+                        <h3 key={todo.id}>
+                            <Link
+                                href={`/todos/${todo.id}`}
+                                className="text-decoration-none text-secondary link-dark  link-hover "
+                            >
+                                {todo.title}
+                            </Link>
+                            <Link
+                                href={`/todos/edit/${todo.id}`}
+                                className="btn btn-info mt-2 mb-2 float-end"
+                            >
+                                Edit
+                            </Link>
+                        </h3>
                     ))
                 ) : (
                     <div className="alert alert-info text-center" role="alert">

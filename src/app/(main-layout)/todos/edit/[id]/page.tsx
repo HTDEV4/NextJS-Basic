@@ -25,7 +25,7 @@ export default async function TodoEditPage({ params }: Params) {
     const todo: Todo = await getTodo(id);
     return (
         <div>
-            <h1>Edit Todo</h1>
+            <h1 className="text-center p-4">Edit Todo</h1>
             <TodoUpdate todo={todo} />
         </div>
     );

@@ -2,7 +2,7 @@
   "todos": [
     {
       "id": "1",
-      "title": "Learn React",
+      "title": "Learn React 2",
       "content": "Demo Learn React",
       "completed": true
     },
@@ -11,12 +11,6 @@
       "title": "Learn NextJS 2",
       "content": "Demo Learn NextJS 2",
       "completed": false
-    },
-    {
-      "title": "Learn PHP",
-      "content": "Demo PHP",
-      "completed": false,
-      "id": "KLbToxz"
     }
   ],
   "posts": [

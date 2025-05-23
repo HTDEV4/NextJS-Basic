@@ -54,6 +54,12 @@ export default async function TodoPage({
                                 {todo.title}
                             </Link>
                             <Link
+                                href={`/todos/delete/${todo.id}`}
+                                className="btn btn-danger mt-2 mb-2 float-end ms-2"
+                            >
+                                Delete
+                            </Link>
+                            <Link
                                 href={`/todos/edit/${todo.id}`}
                                 className="btn btn-info mt-2 mb-2 float-end"
                             >

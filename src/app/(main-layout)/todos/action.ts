@@ -1,36 +1,47 @@
 "use server";
 
 import { revalidateTag } from "next/cache";
-
-// import { revalidatePath } from "next/cache";
-
-// import { redirect } from "next/navigation";
+interface Error {
+    status?: number;
+    message?: string;
+}
 
 export const create = async (formData: FormData) => {
-    const title = formData.get('title');
-    const content = formData.get('content');
-    if (!title || !content) {
+    try {
+        const title = formData.get('title');
+        const content = formData.get('content');
+        if (!title || !content) {
+            const error = new Error("Title and content are required");
+            // Tự custom error chứ error kh có status
+            (error as Error).status = 404;
+            throw error;
+        }
+        const response = await fetch(
+            `${process.env.NEXT_PUBLIC_SERVER_API}/todos`,
+            {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ title, content, completed: false }),
+            }
+        )
+        if (!response.ok) {
+            const error = new Error("Failed to create todo");
+            // Tự custom error chứ error kh có status
+            (error as Error).status = 404;
+            throw error;
+        }
+        // Sử dụng hàm này để kh tải lại trang
+        revalidateTag("todos");
+        return {
+            success: response.ok,
+            message: "Todo created successfully.",
+        }
+    } catch (error) {
         return {
             success: false,
-            message: "Missing title or content",
-        };
-    }
-    const response = await fetch(
-        `${process.env.NEXT_PUBLIC_SERVER_API}/todos`,
-        {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({ title, content, completed: false }),
+            message: (error as Error).status ? (error as Error).message : "Something went wrong",
         }
-    )
-    // Sử dụng hàm này để kh tải lại trang
-    // revalidatePath("/todos");
-    revalidateTag("todos");
-    return {
-        success: response.ok,
-        message: "Todo created successfully.",
     }
-
 }

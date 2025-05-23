@@ -11,10 +11,11 @@ export default function TodoAdd2() {
         <form
             className="card p-4"
             action={async (formData: FormData) => {
-                const response: { success: boolean; message?: string } = await create(formData);
+                const response: { success: boolean; message: string | undefined } = await create(formData);
                 if (!response.success) {
-                    setMsg(response.message);
+                    setMsg(response.message as string);
                 }
+                return setMsg(response.message as string);
             }}
         >
             <div className="mb-3">
@@ -27,7 +28,6 @@ export default function TodoAdd2() {
                     id="title"
                     placeholder="Enter title..."
                     className="form-control"
-
                 />
             </div>
             <div className="mb-3">
@@ -40,7 +40,6 @@ export default function TodoAdd2() {
                     placeholder="Enter content..."
                     className="form-control"
                     rows={4}
-
                 />
             </div>
             <button type="submit" className="btn btn-primary w-100">

@@ -1,6 +1,6 @@
 "use client"
 
-import { handleRegister } from "../action";
+import { handleCancel, handleRegister } from "../action";
 import { useActionState } from "react";
 
 const initialState = {
@@ -77,6 +77,10 @@ export default function Form() {
                 <button type="submit" className="btn btn-primary" disabled={pending}>
                     Register
                 </button>
+                <button type="button" className="btn btn-danger mt-2" onClick={async () => {
+                    const response = await handleCancel("Hoàng An");
+                    console.log(response);
+                }}>Cancel</button>
             </div>
         </form>
     );

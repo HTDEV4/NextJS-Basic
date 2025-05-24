@@ -37,7 +37,7 @@ export const create = async (preState: {
             (error as Error).status = 404;
             throw error;
         }
-        // Sử dụng hàm này để kh tải lại trang
+        // Sử dụng hàm này để kh tải lại trang và đảm bảo dữ liệu luôn mới
         revalidateTag("todos");
         return {
             success: response.ok,
